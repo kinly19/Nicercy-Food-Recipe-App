@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  /* 1 rem = 10px when default font-size is 16px */
+
+  // Extra large screens
+  @media only screen and (max-width: 192em) {
+    font-size: 81.25%;
+  }
+
+  // Large screens
+  @media only screen and (max-width: 136em) {
+    font-size: 62.5%;
+  }
+
+  // Medium screens
+  @media only screen and (max-width: 78em) {
+    font-size: 50%;
+  }
+
+  // Small screens
+  @media only screen and (max-width: 37.5em) {
+    font-size: 45%;
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif, "Quicksand";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
