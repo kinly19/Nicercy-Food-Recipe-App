@@ -1,0 +1,70 @@
+.nav {
+
+  background: linear-gradient(rgb(82, 112, 122),rgb(65, 99, 110));
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+  padding: 0 10% 0 10%;
+  font-family: "Quicksand";
+  letter-spacing: 0.3rem;
+
+
+  &__logo {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgb(219, 219, 219);
+
+    & a {
+      text-decoration: none;
+      color: rgb(219, 219, 219);
+    }
+  }
+
+  &__links {
+    height: 100%;
+    width: 30%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    
+    &--active {
+     background-color: rgb(88, 120, 131);
+    }
+
+    & ul {
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+    }
+
+    & li {
+      width: 12rem;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    & a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      width: 100%;
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: rgb(241, 241, 241);
+
+      transition: all .3s;
+
+      &:hover {
+       background-color: rgb(93, 125, 136);
+      }
+
+      &:active {
+        background-color: rgb(88, 118, 128);
+      }
+    }
+  }
+}
