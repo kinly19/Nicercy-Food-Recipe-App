@@ -1,7 +1,5 @@
 .nav {
-
   background: linear-gradient(rgb(82, 112, 122),rgb(65, 99, 110));
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +7,6 @@
   padding: 0 10% 0 10%;
   font-family: "Quicksand";
   letter-spacing: 0.3rem;
-
 
   &__logo {
     font-size: 3.5rem;
@@ -49,13 +46,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      
       width: 100%;
       text-decoration: none;
       font-size: 1.8rem;
       font-weight: 400;
       color: rgb(241, 241, 241);
-
       transition: all .3s;
 
       &:hover {
