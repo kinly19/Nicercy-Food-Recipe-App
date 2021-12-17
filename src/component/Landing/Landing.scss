@@ -1,0 +1,41 @@
+.landing {
+  background-image: url("https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  min-height: 70vh;
+  padding: 10% 10% 10% 10%;
+
+  color: #41636e;
+  font-family: "Quicksand";
+
+  &__header {
+    width: 45%;
+    text-transform: uppercase;
+
+    & h1 {
+      font-size: 9rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    & h2 {
+      font-size: 6rem;
+      line-height: 6.5rem;
+      margin-bottom: 3rem;
+    }
+
+    & p {
+      font-size: 3rem;
+      text-transform: none;
+      line-height: 4.2rem;
+      margin-bottom: 5rem;
+    }
+  }
+
+  &__form {
+    background-color: cornsilk;
+    width: 45%;
+  }
+}
