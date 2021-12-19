@@ -3,10 +3,11 @@ import AuthContext from '../../store/auth-context'; // React context
 import './AuthenticateForm.scss';
 
 const AuthenticateForm = (props) => {
-
+  
   const [isLoggedIn, setIsLoggedIn] = useState (props.isFormLogin);
   const authCtx = useContext(AuthContext); 
-
+  const {REACT_APP_APIKEY} = process.env;
+  
   // store user inputs
   const firstNameInputRef = useRef();
   const lastNameInputRef = useRef();
@@ -25,13 +26,12 @@ const AuthenticateForm = (props) => {
     const enteredFirstName = !isLoggedIn && firstNameInputRef.current.value;
     const enteredLastName = !isLoggedIn && lastNameInputRef.current.value;
 
-    const APIKEY = 'AIzaSyB87nsYgeUA8nQ6ZJl_XWYyYtnBnA-TEj8';
     let url;
 
     if (isLoggedIn) {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${APIKEY}`;
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${REACT_APP_APIKEY}`;
     } else {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${APIKEY}`;
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${REACT_APP_APIKEY}`;
     }
     //api request
     fetch(url, {
