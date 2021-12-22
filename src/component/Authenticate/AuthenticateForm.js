@@ -1,13 +1,17 @@
-import { useState, Fragment, useContext, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import AuthContext from '../../store/auth-context'; // React context
 import useInput from '../../hooks/use-inputs'; // custom hook
 import './AuthenticateForm.scss';
+import ErrorModal from '../UI/ErrorModal';
 
 const AuthenticateForm = (props) => {
   
   const [isLoggedIn, setIsLoggedIn] = useState (props.isFormLogin);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const authCtx = useContext(AuthContext); 
   const {REACT_APP_APIKEY} = process.env;
+  let history = useNavigate();
   
   // custom hook 
   const {
@@ -59,11 +63,7 @@ const AuthenticateForm = (props) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-    const enteredFirstName = !isLoggedIn && firstNameInputRef.current.value;
-    const enteredLastName = !isLoggedIn && lastNameInputRef.current.value;
-
+    setError(false);
     let url;
 
     if (isLoggedIn) {
@@ -85,11 +85,12 @@ const AuthenticateForm = (props) => {
     })
     .then((res) => {
       if (res.ok) {
+        history("/favourite");
         return res.json();
       } else {
         return res.json().then((data) => {
-          let ErrorMessage = data.error.message
-          throw new Error (ErrorMessage);
+          let ErrorMessage = `${data.error.message} Please Try Again`;
+          throw new Error(ErrorMessage);
         });
       };
     })
@@ -100,6 +101,8 @@ const AuthenticateForm = (props) => {
       authCtx.login(data.idToken);
     })
     .catch((err) => {
+      setErrorMessage(err.message);
+      setError(true);
       console.log(err.message);
     });
   };
