@@ -7,7 +7,7 @@ import ErrorModal from '../UI/ErrorModal';
 
 const AuthenticateForm = (props) => {
   
-  const [isLoggedIn, setIsLoggedIn] = useState (props.isFormLogin);
+  const [isLogin, setisLogin] = useState (true);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const authCtx = useContext(AuthContext); 
@@ -59,7 +59,7 @@ const AuthenticateForm = (props) => {
 
   //handlers
   const showSignUpHandler = () => {
-    setIsLoggedIn(!isLoggedIn);
+    setisLogin(!isLogin);
   };
 
   const formSubmitHandler = (e) => {
@@ -67,7 +67,7 @@ const AuthenticateForm = (props) => {
     setError(false);
     let url;
 
-    if (isLoggedIn) {
+    if (isLogin) {
       url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${REACT_APP_APIKEY}`;
     } else {
       url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${REACT_APP_APIKEY}`;
@@ -86,7 +86,6 @@ const AuthenticateForm = (props) => {
     })
     .then((res) => {
       if (res.ok) {
-        history("/favourite");
         return res.json();
       } else {
         return res.json().then((data) => {
@@ -100,6 +99,7 @@ const AuthenticateForm = (props) => {
       console.log(`User signed in with Email: ${data.email} Is Registered: ${data.registered} idToken : ${data.idToken}`);
       //store token
       authCtx.login(data.idToken);
+      history("/favourite");
     })
     .catch((err) => {
       setErrorMessage(err.message);
@@ -112,9 +112,9 @@ const AuthenticateForm = (props) => {
     <Fragment>
       {error && <ErrorModal errorMessage={errorMessage} />}
       <div className="form" onSubmit={formSubmitHandler}>
-        <h1>{isLoggedIn ? "Login" : "Sign Up"}</h1>
+        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
         <form className="form__inputItems">
-          {!isLoggedIn && (
+          {!isLogin && (
             <Fragment>
               <div className={nameInputClass}>
                 <label htmlFor="text">First Name</label>
@@ -163,14 +163,14 @@ const AuthenticateForm = (props) => {
             />
           </div>
           <div className="form__btn">
-            {isLoggedIn && (
+            {isLogin && (
               <Fragment>
                 <button>Login</button>
                 <p>Or</p>
                 <button onClick={showSignUpHandler}>Create Account</button>
               </Fragment>
             )}
-            {!isLoggedIn && (
+            {!isLogin && (
               <Fragment>
                 <button>Create Account</button>
                 <button onClick={showSignUpHandler}>Cancel</button>
