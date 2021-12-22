@@ -1,3 +1,4 @@
+import { useState, Fragment, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import AuthContext from '../../store/auth-context'; // React context
 import useInput from '../../hooks/use-inputs'; // custom hook
@@ -109,75 +110,75 @@ const AuthenticateForm = (props) => {
 
   return (
     <Fragment>
-    {error && <ErrorModal errorMessage={errorMessage}/>}
-    <div className="form" onSubmit={formSubmitHandler}>
-      <h1>{isLoggedIn ? "Login" : "Sign Up"}</h1>
-      <form className="form__inputItems">
-        {!isLoggedIn && (
-          <Fragment>
-            <div className={nameInputClass}>
-              <label htmlFor="text">First Name</label>
-              <input
-                type="text"
-                id="firstname"
-                required
-                value={enteredFirstName}
-                onBlur={nameBlurHandler}
-                onChange={nameChangeHandler}
-              />
-            </div>
-            <div className={lastnameInputClass}>
-              <label htmlFor="text">Last Name</label>
-              <input
-                type="text"
-                id="lastname"
-                required
-                value={enteredLastName}
-                onBlur={lastNameBlurHandler}
-                onChange={lastNameChangeHandler}
-              />
-            </div>
-          </Fragment>
-        )}
-        <div className={emailInputClass}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            required
-            value={enteredEmail}
-            onBlur={emailBlurHandler}
-            onChange={emailChangeHandler}
-          />
-        </div>
-        <div className="form__input">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            value={enteredPassword}
-            onBlur={passwordBlurHandler}
-            onChange={passwordChangeHandler}
-          />
-        </div>
-        <div className="form__btn">
-          {isLoggedIn && (
-            <Fragment>
-              <button>Login</button>
-              <p>Or</p>
-              <button onClick={showSignUpHandler}>Create Account</button>
-            </Fragment>
-          )}
+      {error && <ErrorModal errorMessage={errorMessage} />}
+      <div className="form" onSubmit={formSubmitHandler}>
+        <h1>{isLoggedIn ? "Login" : "Sign Up"}</h1>
+        <form className="form__inputItems">
           {!isLoggedIn && (
             <Fragment>
-              <button>Create Account</button>
-              <button onClick={showSignUpHandler}>Cancel</button>
+              <div className={nameInputClass}>
+                <label htmlFor="text">First Name</label>
+                <input
+                  type="text"
+                  id="firstname"
+                  required
+                  value={enteredFirstName}
+                  onBlur={nameBlurHandler}
+                  onChange={nameChangeHandler}
+                />
+              </div>
+              <div className={lastnameInputClass}>
+                <label htmlFor="text">Last Name</label>
+                <input
+                  type="text"
+                  id="lastname"
+                  required
+                  value={enteredLastName}
+                  onBlur={lastNameBlurHandler}
+                  onChange={lastNameChangeHandler}
+                />
+              </div>
             </Fragment>
           )}
-        </div>
-      </form>
-    </div>
+          <div className={emailInputClass}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              required
+              value={enteredEmail}
+              onBlur={emailBlurHandler}
+              onChange={emailChangeHandler}
+            />
+          </div>
+          <div className={passwordInputClass}>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              required
+              value={enteredPassword}
+              onBlur={passwordBlurHandler}
+              onChange={passwordChangeHandler}
+            />
+          </div>
+          <div className="form__btn">
+            {isLoggedIn && (
+              <Fragment>
+                <button>Login</button>
+                <p>Or</p>
+                <button onClick={showSignUpHandler}>Create Account</button>
+              </Fragment>
+            )}
+            {!isLoggedIn && (
+              <Fragment>
+                <button>Create Account</button>
+                <button onClick={showSignUpHandler}>Cancel</button>
+              </Fragment>
+            )}
+          </div>
+        </form>
+      </div>
     </Fragment>
   );
 };
