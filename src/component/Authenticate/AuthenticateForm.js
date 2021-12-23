@@ -167,12 +167,12 @@ const AuthenticateForm = (props) => {
               <Fragment>
                 <button>Login</button>
                 <p>Or</p>
-                <button onClick={showSignUpHandler}>Create Account</button>
+                <button className="light" onClick={showSignUpHandler}>Create Account</button>
               </Fragment>
             )}
             {!isLogin && (
               <Fragment>
-                <button>Create Account</button>
+                <button className='light'>Create Account</button>
                 <button onClick={showSignUpHandler}>Cancel</button>
               </Fragment>
             )}
