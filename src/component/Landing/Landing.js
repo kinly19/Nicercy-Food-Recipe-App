@@ -1,3 +1,4 @@
+import RecipeForm from '../RecipeForm/RecipeForm';
 import './Landing.scss';
 
 const Landing = () => {
@@ -11,8 +12,7 @@ const Landing = () => {
         </p>
       </div>
       <div className="landing__form">
-        {/* search form should go inside here */}
-        <h3>Add search bar here</h3>
+        <RecipeForm />
       </div>
     </div>
   );
