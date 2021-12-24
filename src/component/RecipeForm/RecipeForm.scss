@@ -1,0 +1,47 @@
+.search {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+
+  &__input {
+    height: 3.5rem;
+    width: 100%;
+
+    input {
+      height: 100%;
+      width: 100%;
+      padding-left: 1rem;
+      border: none;
+      background-color: rgb(240, 240, 240);
+      outline: none;
+      font-size: 1.7rem;
+
+      &:focus {
+        background-color: #faf9e8;
+      }
+    }
+  }
+
+  &__button {
+    width: 5%;
+
+    button {
+      height: 100%;
+      width: 100%;
+      background-color: rgb(240, 240, 240);
+      border: none;
+
+      &:hover {
+        .search__icon {
+          height: 1.8rem;
+          width: 1.8rem;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    height: 1.7rem;
+    width: 1.6rem;
+  }
+}
