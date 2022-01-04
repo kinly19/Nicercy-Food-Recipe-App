@@ -1,9 +1,11 @@
 .error {
   background-color: rgba(17, 17, 17, 0.616);
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
-  position: absolute;
-  padding: 10rem;
 
   &__message {
     display: flex;
