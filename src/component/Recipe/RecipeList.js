@@ -1,3 +1,5 @@
+import Carousel from "../UI/Carousel";
+import RecipeItems from "./RecipeItems";
 import "./RecipeList.scss";
 
 const RecipeList = (props) => {
@@ -5,7 +7,19 @@ const RecipeList = (props) => {
     <section className="recipeList">
       <h1 className="recipeList__title">{props.title}</h1>
       <p className="recipeList__text">{props.subTitle}</p>
-      <div className="recipeList__items">{props.children}</div>
+      <div className="recipeList__items">
+        <Carousel>
+          {props.data.map((recipeItems) => (
+            <RecipeItems
+              key={recipeItems.id}
+              backgroundUrl={recipeItems.image}
+              title={recipeItems.title}
+              min={recipeItems.readyIn}
+              servings={recipeItems.servings}
+            />
+          ))}
+        </Carousel>
+      </div>
     </section>
   );
 };
