@@ -12,6 +12,7 @@ const RecipeList = (props) => {
           {props.data.map((recipeItems) => (
             <RecipeItems
               key={recipeItems.id}
+              id={recipeItems.id}
               backgroundUrl={recipeItems.image}
               title={recipeItems.title}
               min={recipeItems.readyIn}
