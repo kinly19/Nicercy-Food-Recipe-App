@@ -1,8 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import "./RecipeItems.scss";
 
 const RecipeItems = (props) => {
+
+  let navigate = useNavigate();
+
+  const navigateHandler = () => {
+    navigate(`/recipe-details/${props.id}`);
+  };
+
   return (
-    <li>
+    <li onClick={navigateHandler}>
       <div
         className="recipeItem"
         style={{ backgroundImage: `url(${props.backgroundUrl})` }}
