@@ -6,8 +6,7 @@ const Carousel = (props) => {
   // States
   const [slideIndex, setSlideIndex] = useState(0);
   const [length, setLength] = useState(props.children.length);
-
-  const viewPortWidth = window.innerWidth;
+  const [viewPortWidth, setViewPortWidth] = useState(window.innerWidth);
 
   // Change amount of slides to show
   let show = 5;
@@ -45,10 +44,30 @@ const Carousel = (props) => {
     }
   };
 
+  const resizeHandler = () => {
+    setViewPortWidth(window.innerWidth);
+  };
+
+  const debounceHandler = (func, delay) => {
+    let timer;
+    return () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func();
+      }, delay);
+    };
+  };
+
   // Side Effects
   useEffect(() => {
-    // update length after first render
+
     setLength(props.children.length);
+    const debounceResize = debounceHandler(resizeHandler, 200);
+    window.addEventListener("resize", debounceResize);
+
+    return () => {
+      window.addEventListener("resize", debounceResize);
+    };
   }, [props.children]);
 
   return (
