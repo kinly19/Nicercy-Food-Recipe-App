@@ -1,0 +1,27 @@
+.method {
+  margin: 7rem 0;
+
+  h2 {
+    font-size: 4rem;
+    color: #41636e;
+  }
+
+  &__list {
+    padding: 3rem 0;    
+  }
+
+  &__listItem {
+    h2 {
+      font-size: 5.5rem;
+      font-weight: 500;
+      letter-spacing: 0.5rem;
+      color: #d9dcdd;
+    }
+
+    p {
+      padding: 1.5rem 10rem 1.5rem 3rem;
+      line-height: 3.5rem;
+      font-size: 2.3rem;
+    }
+  }
+}
