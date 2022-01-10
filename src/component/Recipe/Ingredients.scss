@@ -1,0 +1,53 @@
+.ingredients {
+  margin: 7rem 0;
+
+  h2 {
+    font-size: 4rem;
+    color: #41636e;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem 0;
+
+    li {
+      padding-left: 3rem;
+      font-size: 2.3rem;
+      line-height: 5rem;
+      width: 50%;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    h3 {
+      font-size: 2rem;
+      color: #41636e;
+      margin-right: 2.5rem;
+    }
+
+    p {
+      font-size: 2rem;
+      color: #41636e;
+      width: 5rem;
+     
+    }
+
+    button {
+      background-color: #41636e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2.5rem;
+      width: 3.5rem;
+      font-size: 2rem;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+    }
+  }
+}
