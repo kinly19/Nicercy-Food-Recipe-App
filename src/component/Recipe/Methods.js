@@ -19,8 +19,6 @@ const Methods = (props) => {
               </li>
             );
           })
-
-         
         )}
       </ul>
     </div>
