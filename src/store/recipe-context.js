@@ -7,6 +7,7 @@ const RecipeContext = React.createContext({
   Loading: false,
   recipeItems: [],
   similarRecipes: [],
+  searchInputTitle: "",
   searchInputHandler: () => {},
 })
 
@@ -25,7 +26,6 @@ export const RecipeContextProvider = (props) => {
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULARKEY}&query=${searchInput}&number=1`,
     searchInput // is not null
   );
-
   // Fetch recipeItems
   const { data: fetchedRecipeItems } = useFetch(
     `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${recipeIds}&number=1`,
@@ -78,6 +78,7 @@ export const RecipeContextProvider = (props) => {
     Loading: isLoading,
     recipeItems: recipeItems,
     similarRecipes: similarRecipes,
+    searchInputTitle: searchInput,
     //handler
     fetchSearchQuery: fetchSearchQuery,
   }
