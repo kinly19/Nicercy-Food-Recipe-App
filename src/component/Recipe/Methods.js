@@ -10,10 +10,10 @@ const Methods = (props) => {
       <h2>Methods</h2>
       <ul className="method__list">
         {methodList.map((subArr) =>
-          subArr.steps.map((item) => {
+          subArr.steps.map((item, index) => {
             count++;
             return (
-              <li className="method__listItem">
+              <li key={index} className="method__listItem">
                 <h2>{count}.</h2>
                 <p>{item.step}</p>
               </li>
