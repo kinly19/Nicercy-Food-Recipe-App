@@ -33,14 +33,20 @@ const Ingredients = (props) => {
   const decrementHandler = () => {
     setUpDatedServings((prevState) => prevState - 1);
   };
-    
+
   return (
     <div className="ingredients">
       <h2>Ingredients</h2>
       <ul className="ingredients__items">
-        {ingredientsList.map((item) => (
-          <li>
-            {adjustAmountHandler(item.amount, intialServings, upDatedServings)}
+        {ingredientsList.map((item, index) => (
+          <li key={index}>
+            <span>
+              {adjustAmountHandler(
+                item.amount,
+                intialServings,
+                upDatedServings
+              )}
+            </span>
             {item.units} {item.name} {item.meta}
           </li>
         ))}
