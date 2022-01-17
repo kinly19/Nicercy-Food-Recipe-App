@@ -19,6 +19,10 @@ const Ingredients = (props) => {
   const adjustAmountHandler = (initialValue, initialServings, adjustedServings) => {
     let adjustBy = initialValue / initialServings;
     let adjustedAmount = adjustBy * adjustedServings;
+    
+    if (Number.isInteger(adjustedAmount)) {
+      return adjustedAmount
+    }
     return adjustedAmount.toFixed(2);
   }
 
