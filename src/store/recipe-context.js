@@ -6,7 +6,7 @@ const RecipeContext = React.createContext({
   errorMessage: "",
   Loading: false,
   recipeItems: [],
-  similarRecipes: [],
+  similarRecipeItems: [],
   searchInputTitle: "",
   searchInputHandler: () => {},
 })
@@ -14,8 +14,10 @@ const RecipeContext = React.createContext({
 export const RecipeContextProvider = (props) => { 
   // States
   const [recipeIds, setRecipeIds] = useState(null);
+  const [singleRecipeId, setSingleRecipeId] = useState(null)
   const [recipeItems, setRecipeItems] = useState(null);
-  const [similarRecipes, setSimilarRecipes] = useState(null);
+  const [similarRecipeIds, setSimilarRecipeIds] = useState(null);
+  const [similarRecipeItems, setSimilarRecipeItems] = useState(null)
   const [searchInput, setSearchInput] = useState(null);
 
   // Api key
@@ -31,6 +33,16 @@ export const RecipeContextProvider = (props) => {
     `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${recipeIds}&number=1`,
     recipeIds
   );
+  // Fetch ids for similar recipes
+  const { data: fetchedSimilarIds } = useFetch(
+    `https://api.spoonacular.com/recipes/${singleRecipeId}/similar?apiKey=${REACT_APP_SPOONACULARKEY}&number=1`,
+    singleRecipeId
+  );
+  // Fetch recipe items for similar recipes
+  const { data: fetchedSimilarRecipeItems } = useFetch(
+    `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${similarRecipeIds}&number=1`,
+    similarRecipeIds
+  );
 
   // Handlers
   const fetchSearchQuery = (userInput) => {
@@ -42,6 +54,7 @@ export const RecipeContextProvider = (props) => {
     if (fetchedIds) {
       const recipeIdList = fetchedIds.results.map((item) => item.id);
       setRecipeIds(recipeIdList);
+      setSingleRecipeId(recipeIdList[0])
       console.log("Search input for fetch " + searchInput);
     }
   }, [fetchedIds]);
@@ -64,11 +77,27 @@ export const RecipeContextProvider = (props) => {
     }
   }, [fetchedRecipeItems]);
 
-  // testing purpose
   useEffect(() => {
-    console.log("recipe ids for fetch request: " + recipeIds);
-    console.log(recipeItems);
-  }, [recipeIds, recipeItems]);
+    if (fetchedSimilarIds) {
+      setSimilarRecipeIds(fetchedSimilarIds.map((similarItems) => similarItems.id))
+    }
+  },[fetchedSimilarIds])
+
+  useEffect(() => {
+    if(fetchedSimilarRecipeItems){
+      setSimilarRecipeItems(fetchedSimilarRecipeItems.map((recipeItem) => {
+        return {
+          id: recipeItem.id,
+          title: recipeItem.title,
+          image: recipeItem.image,
+          readyIn: recipeItem.readyInMinutes,
+          servings: recipeItem.servings,
+          ingredients: recipeItem.extendedIngredients,
+          instructions: recipeItem.analyzedInstructions,
+        };
+      }))
+    }
+  },[fetchedSimilarRecipeItems])
 
   // ContextValue
   const contextValue = {
@@ -77,7 +106,7 @@ export const RecipeContextProvider = (props) => {
     errorMessage: errorMessage,
     Loading: isLoading,
     recipeItems: recipeItems,
-    similarRecipes: similarRecipes,
+    similarRecipeItems: similarRecipeItems,
     searchInputTitle: searchInput,
     //handler
     fetchSearchQuery: fetchSearchQuery,
