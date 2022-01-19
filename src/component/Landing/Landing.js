@@ -3,7 +3,7 @@ import './Landing.scss';
 
 const Landing = () => {
   return (
-    <div className="landing">
+    <section className="landing">
       <div className="landing__header">
         <h1>Nicercy</h1>
         <h2>Cooking Made Easy</h2>
@@ -14,7 +14,7 @@ const Landing = () => {
       <div className="landing__form">
         <RecipeForm />
       </div>
-    </div>
+    </section>
   );
 };
 
