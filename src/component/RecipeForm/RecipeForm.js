@@ -1,15 +1,18 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import "./RecipeForm.scss";
 
 const RecipeForm = () => {
 
+  const recipeCtx = useContext(RecipeContext)
   const searchInputRef = useRef();
   const formRef = useRef();
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    
     const enteredInput = searchInputRef.current.value;
+    recipeCtx.fetchSearchQuery(enteredInput)   
     formRef.current.reset(); //reset input field
     console.log("Search recipe for:" + enteredInput);
 
