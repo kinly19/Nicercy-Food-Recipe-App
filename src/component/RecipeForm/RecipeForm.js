@@ -1,5 +1,7 @@
 import { useRef, useContext } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import { useEffect } from 'react/cjs/react.development';
+import RecipeContext from '../../store/recipe-context';
 import "./RecipeForm.scss";
 
 const RecipeForm = () => {
@@ -18,6 +20,15 @@ const RecipeForm = () => {
 
     //run recipesContext fetch function/pass enteredInput as argument
   };
+
+  useEffect(() => {
+    if (recipeCtx.recipeItems && recipeCtx.similarRecipeItems) {
+      window.scroll({
+        top: 1000,
+        behavior: 'smooth'
+      });
+    }
+  },[recipeCtx.recipeItems, recipeCtx.similarRecipeItems]);
 
   return (
     <form onSubmit={formSubmitHandler} ref={formRef}>
