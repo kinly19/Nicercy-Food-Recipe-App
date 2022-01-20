@@ -24,12 +24,12 @@ export const RecipeContextProvider = (props) => {
   const {REACT_APP_SPOONACULARKEY} = process.env; 
 
   // Fetch ids
-  const { data: fetchedIds, errorMessage, isError, isLoading } = useFetch(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULARKEY}&query=${searchInput}&number=1`,
+  const { data: fetchedIds, isError: idHasError, errorMessage: idErrMsg, isLoading: idIsLoading } = useFetch(
+  `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULARKEY}&query=${searchInput}&number=1`,
     searchInput // is not null
   );
   // Fetch recipeItems
-  const { data: fetchedRecipeItems } = useFetch(
+  const { data: fetchedRecipeItems, isError: recipeHasError, errorMessage: recipeErrMsg, isLoading: recipeIsLoading} = useFetch(
     `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${recipeIds}&number=1`,
     recipeIds
   );
@@ -102,15 +102,15 @@ export const RecipeContextProvider = (props) => {
   // ContextValue
   const contextValue = {
     //states
-    error: isError,
-    errorMessage: errorMessage,
-    Loading: isLoading,
+    error: idHasError || recipeHasError,
+    errorMessage: idErrMsg || recipeErrMsg,
+    Loading: idIsLoading || recipeIsLoading,
     recipeItems: recipeItems,
     similarRecipeItems: similarRecipeItems,
     searchInputTitle: searchInput,
     //handler
     fetchSearchQuery: fetchSearchQuery,
-  }
+  };
 
   return (
     <RecipeContext.Provider value={contextValue}>
