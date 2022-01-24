@@ -25,8 +25,13 @@ const useFetch = (url, hasQuery) => {
           }
         })
         .then((data) => {
+          if (data.length === 0) {
+            throw new Error ("No Recipes Found Please Try Again")
+          }
           setIsLoading(false);
           setData(data);
+          setErrorMessage(null);
+          setIsError(false);
           console.log(data);
         })
         .catch((err) => {
