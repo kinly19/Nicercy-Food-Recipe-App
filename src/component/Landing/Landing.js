@@ -1,7 +1,22 @@
+import { useContext, useEffect } from 'react';
 import RecipeForm from '../RecipeForm/RecipeForm';
+import Loading from '../UI/Loading';
+import ErrorModal from '../UI/ErrorModal';
+import RecipeContext from '../../store/recipe-context';
 import './Landing.scss';
 
 const Landing = () => {
+  const recipeCtx = useContext(RecipeContext);
+
+  useEffect(() => {
+    if (recipeCtx.recipeItems && recipeCtx.similarRecipeItems) {
+      window.scroll({
+        top: 1000,
+        behavior: 'smooth'
+      });
+    }
+  },[recipeCtx.recipeItems, recipeCtx.similarRecipeItems]);
+
   return (
     <section className="landing">
       <div className="landing__header">
@@ -14,6 +29,8 @@ const Landing = () => {
       <div className="landing__form">
         <RecipeForm />
       </div>
+      {recipeCtx.Loading && <Loading />}
+      {recipeCtx.error && <ErrorModal errorMessage={recipeCtx.errorMessage} />}
     </section>
   );
 };
