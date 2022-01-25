@@ -27,9 +27,23 @@
     button {
       border: none;
       background-color: #ca2a1e;
+      border-radius: 10px;
+      width: 7rem;
       padding: 1rem;
+     
       font-family: "Quicksand";
       color: #EBF2F2;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #9c221a;
+        transform: scale(1.05);
+      }
+
+      &:active {
+        background-color: #ca2a1e;
+        transform: scale(0.95);
+      }
     }
   }
 }
