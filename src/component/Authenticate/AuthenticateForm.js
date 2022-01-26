@@ -1,18 +1,14 @@
 import { useState, Fragment, useContext } from 'react';
-import { useNavigate } from "react-router-dom";
 import AuthContext from '../../store/auth-context'; // React context
 import useInput from '../../hooks/use-inputs'; // custom hook
-import './AuthenticateForm.scss';
 import ErrorModal from '../UI/ErrorModal';
+import './AuthenticateForm.scss';
 
 const AuthenticateForm = (props) => {
   
   const [isLogin, setisLogin] = useState (true);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
   const authCtx = useContext(AuthContext); 
   const {REACT_APP_APIKEY} = process.env;
-  let history = useNavigate();
   
   // custom hook 
   const {
@@ -64,53 +60,18 @@ const AuthenticateForm = (props) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    setError(false);
-    let url;
 
     if (isLogin) {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${REACT_APP_APIKEY}`;
+      authCtx.login(enteredEmail, enteredPassword);
+      
     } else {
-      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${REACT_APP_APIKEY}`;
+      authCtx.signup(enteredEmail, enteredPassword);
     }
-    //api request
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true
-      }),
-      headers: {
-        'content-type' : 'application/json'
-      },
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return res.json().then((data) => {
-          let ErrorMessage = `${data.error.message} Please Try Again`;
-          throw new Error(ErrorMessage);
-        });
-      };
-    })
-    .then((data) => {
-      console.log(data);
-      console.log(`User signed in with Email: ${data.email} Is Registered: ${data.registered} idToken : ${data.idToken}`);
-      //store token
-      authCtx.login(data.idToken);
-      history("/favourite");
-    })
-    .catch((err) => {
-      setErrorMessage(err.message);
-      setError(true);
-      console.log(err.message);
-    });
-  };
+  }
 
   return (
     <Fragment>
-      {error && <ErrorModal errorMessage={errorMessage} />}
+      {authCtx.error && <ErrorModal errorMessage={authCtx.errorMessage} />}
       <div className="form" onSubmit={formSubmitHandler}>
         <h1>{isLogin ? "Login" : "Sign Up"}</h1>
         <form className="form__inputItems">
