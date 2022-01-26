@@ -10,13 +10,13 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <RecipeContextProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <RecipeContextProvider>
           <App />
-        </BrowserRouter>
-      </RecipeContextProvider>
-    </AuthContextProvider>
+        </RecipeContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
