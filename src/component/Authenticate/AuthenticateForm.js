@@ -58,16 +58,22 @@ const AuthenticateForm = (props) => {
     setisLogin(!isLogin);
   };
 
+  const userDetails = {
+    userEmail: enteredEmail,
+    userPassword: enteredPassword,
+    userFirstname: enteredFirstName,
+    userLastname: enteredLastName
+  }
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
     if (isLogin) {
-      authCtx.login(enteredEmail, enteredPassword);
-      
+      authCtx.login(userDetails);
     } else {
-      authCtx.signup(enteredEmail, enteredPassword);
+      authCtx.signup(userDetails);
     }
-  }
+  };
 
   return (
     <Fragment>
