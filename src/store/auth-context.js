@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut} from "firebase/auth"
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../Firebase';
+import { auth, db } from '../Firebase';
+import { setDoc, doc } from "firebase/firestore";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
@@ -30,9 +31,10 @@ export const AuthContextProvider = (props) => {
     }
   });
 
-  const loginHandler = (userEmail, userPassword) => {
+  const loginHandler = (loginDetails) => {
+    const { userEmail, userPassword } = loginDetails;
     setError(false);
-
+    
     signInWithEmailAndPassword(auth, userEmail, userPassword)
       .then((userCredential) => {
         setLoading(false);
@@ -53,7 +55,7 @@ export const AuthContextProvider = (props) => {
         if (errorCode === "auth/wrong-password") {
           errorMessage = "Invalid password please try again"
         }
-        
+
         setLoading(false);
         setError(true);
         setErrorMessage(errorMessage)
@@ -61,11 +63,19 @@ export const AuthContextProvider = (props) => {
       });
   };
 
-  const registerHandler = (registerEmail, registerPassword) => {
+  const registerHandler = (registerDetails) => {
+    const {userEmail, userPassword, userFirstname, userLastname} = registerDetails;
     setError(false);
 
-    createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+    createUserWithEmailAndPassword(auth, userEmail, userPassword)
       .then((user) => {
+        // create new doc in firestore for new user
+        setDoc(doc(db, "users", user.user.uid),{
+          Email: user.user.email,
+            Firstname: userFirstname,
+            Lastname: userLastname
+        });
+
         setLoading(false);
         history("/");
         console.log("User Signed up");
