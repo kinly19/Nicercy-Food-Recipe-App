@@ -38,7 +38,7 @@ export const AuthContextProvider = (props) => {
     signInWithEmailAndPassword(auth, userEmail, userPassword)
       .then((userCredential) => {
         setLoading(false);
-        history("/favourite");
+        history(-1);
         console.log("user logged in as: " + userCredential.user.email);
         console.log(userCredential);
       })
