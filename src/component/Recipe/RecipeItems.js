@@ -32,17 +32,17 @@ const RecipeItems = (props) => {
       image: props.backgroundUrl,
     };
 
-    if (currentUser) {
-      if (!hasItem) {
-        setIsFavourite(true);
-        favouriteCtx.addItem(currentUser, favouriteItem);
-        console.log("add item to favourite list");
-      } else {
-        setIsFavourite(false);
-        favouriteCtx.removeItem(currentUser, favouriteItem.id);
-        console.log("remove item from favourite list");
-      }
+    if (currentUser && !hasItem) {
+      setIsFavourite(true);
+      favouriteCtx.addItem(currentUser, favouriteItem);
+      console.log("add item to favourite list");
     } else {
+      setIsFavourite(false);
+      favouriteCtx.removeItem(currentUser, favouriteItem.id);
+      console.log("remove item from favourite list");
+    }
+
+    if (!currentUser) {
       navigate(`/auth`);
       console.log("please log in!");
     }
@@ -52,12 +52,12 @@ const RecipeItems = (props) => {
     favouriteCtx.getFavouriteList(currentUser);
     setIsFavourite(hasItem);
     if (hasItem) {
-      setIsFavourite(true)
+      setIsFavourite(true);
     } else {
-      setIsFavourite(false)
+      setIsFavourite(false);
     }
   }, [isFavourite, hasItem]);
-  
+
   return (
     <li onClick={navigateHandler}>
       <div
