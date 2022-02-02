@@ -6,22 +6,19 @@ import FavouriteContext from '../../store/favourite-context';
 import "./RecipeItems.scss";
 
 const RecipeItems = (props) => {
-
+  // Context
+  const favouriteCtx = useContext(FavouriteContext);
+  // Hook
+  let navigate = useNavigate();
   // States
   const [isFavourite, setIsFavourite] = useState(null);
   const currentUser = auth.currentUser?.uid;
   const favouriteList = favouriteCtx.favouriteList.filter((item) => {
     if (item.Id === props.id) {
-      return item
+      return item;
     }
-  })
+  });
   const hasItem = favouriteList.length > 0;
-
-  // Context
-  const favouriteCtx = useContext(FavouriteContext);
-
-  // Hook
-  let navigate = useNavigate();
 
   // Handlers
   const navigateHandler = () => {
