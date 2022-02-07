@@ -29,6 +29,9 @@ const RecipeItems = (props) => {
           <p>{`${props.min} min | ${props.servings} Servings`}</p>
         </div>
       </div>
+      <div className="action">
+        <Bookmark itemData={favouriteItem} id={props.id} size={"3rem"} />
+      </div>
     </li>
   );
 };
