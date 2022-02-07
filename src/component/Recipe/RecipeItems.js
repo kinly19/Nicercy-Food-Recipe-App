@@ -17,9 +17,9 @@ const RecipeItems = (props) => {
   };
 
   return (
-    <li>
+    <li className="recipeItem">
       <div
-        className="recipeItem"
+        className="recipeItem__content"
         style={{ backgroundImage: `url(${props.backgroundUrl})` }}
         onClick={navigateHandler}
       >
