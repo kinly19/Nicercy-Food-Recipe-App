@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Fragment } from 'react/cjs/react.development';
 import useFetch from '../../hooks/useFetch';
 import RecipeContext from '../../store/recipe-context';
+import Bookmark from '../UI/Bookmark';
 import Ingredients from './Ingredients';
 import Methods from './Methods';
 import './RecipeInfo.scss';
@@ -66,13 +67,23 @@ const RecipeInfo = () => {
       )}
       {selectedRecipe && (
         <Fragment>
-          <div className="recipeInfo__image">
-            <img src={selectedRecipe[0].image} alt={selectedRecipe[0].title} />
-            <div className="recipeInfo__title">
-              <h1>{selectedRecipe[0].title}</h1>
-              <h3>Ready in: {selectedRecipe[0].readyIn} min</h3>
-              <h3>Servings: {selectedRecipe[0].servings}</h3>
+          <div className="recipeInfo__image" style={{ backgroundImage: `url(${selectedRecipe[0].image})` }}>
+            <div className="recipeInfo__action">
+              <Bookmark
+                itemData={{
+                  title: selectedRecipe[0].title,
+                  id: selectedRecipe[0].id,
+                  image: selectedRecipe[0].image,
+                }}
+                id={selectedRecipe[0].id}
+                size={"5rem"}
+              />
             </div>
+          </div>
+          <div className="recipeInfo__title">
+            <h1>{selectedRecipe[0].title}</h1>
+            <h3>Ready in: {selectedRecipe[0].readyIn} min</h3>
+            <h3>Servings: {selectedRecipe[0].servings}</h3>
           </div>
           <div className="recipeInfo__content">
             <Ingredients data={selectedRecipe} />
