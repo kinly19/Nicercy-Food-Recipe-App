@@ -1,22 +1,31 @@
-li {
-  list-style: none;
-}
-
 .recipeItem {
-  background-position: center;
-  background-size: cover;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  list-style: none;
+  position: relative;
+  transition: all 0.15s ease-in-out;
 
-  display: flex;
-  align-items: flex-end;
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-  color: #EBEDED;
-  overflow: hidden;
+  &:hover {
+    transform: scale(1.01);
+  }
 
-  &__text{
-    background: linear-gradient(rgba(4, 4, 4, 0.32), rgba(0, 0, 0, 0.75), rgb(0 0 0));
+  &__content {
+    background-position: center;
+    background-size: cover;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    color: #ebeded;
+    overflow: hidden;
+  }
+
+  &__text {
+    background: linear-gradient(
+      rgba(4, 4, 4, 0.32),
+      rgba(0, 0, 0, 0.75),
+      rgb(0 0 0)
+    );
 
     display: flex;
     flex-direction: column;
@@ -30,6 +39,10 @@ li {
       font-weight: 600;
       line-height: 2.5rem;
       margin-bottom: 2rem;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     p {
@@ -37,4 +50,11 @@ li {
       font-weight: 300;
     }
   }
+}
+
+.action {
+  position: absolute;
+  bottom: 5%;
+  right: 0;
+  margin-right: 3rem;
 }
