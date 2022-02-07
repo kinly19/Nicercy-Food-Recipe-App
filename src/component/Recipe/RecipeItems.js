@@ -3,7 +3,6 @@ import Bookmark from '../UI/Bookmark';
 import "./RecipeItems.scss";
 
 const RecipeItems = (props) => {
- 
   // Hook
   let navigate = useNavigate();
 
@@ -12,17 +11,17 @@ const RecipeItems = (props) => {
     id: props.id,
     image: props.backgroundUrl,
   };
-  
   // Handlers
   const navigateHandler = () => {
     navigate(`/recipe-details/${props.id}`);
   };
 
   return (
-    <li onClick={navigateHandler}>
+    <li>
       <div
         className="recipeItem"
         style={{ backgroundImage: `url(${props.backgroundUrl})` }}
+        onClick={navigateHandler}
       >
         <div className="recipeItem__text">
           <h2>{props.title}</h2>
