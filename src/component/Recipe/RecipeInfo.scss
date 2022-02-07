@@ -28,12 +28,25 @@
   }
 
   &__image {
-    margin: auto;
+    position: relative;
+    height: 40vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom-right-radius: 10rem;
+  }
 
-    img {
-      border: 10px solid rgba(212, 212, 212, 0.438);
-      border-bottom-right-radius: 10rem;
-    }
+  &__action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -3rem;
+    right: -3rem;
+    background-color: #41636e;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
   }
 
   &__title {
