@@ -3,7 +3,7 @@ import "./FavouriteItem.scss";
 
 const FavouriteItem = (props) => {
   return (
-    <li className="listItem" key={props.id}>
+    <li className="listItem">
       <div className="listItem__content">
         <p>{props.title}</p>
       </div>
