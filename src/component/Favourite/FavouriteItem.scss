@@ -1,0 +1,51 @@
+.listItem {
+  display: flex;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  list-style: none;
+  background-color: rgba(255, 255, 255, 0.911);
+
+  &:hover {
+    background-color: rgba(233, 233, 233, 0.911);
+  }
+
+  &__content {
+    align-self: center;
+    width: 90%;
+
+    & p {
+      font-size: 2rem;
+      padding: 2rem 3rem;
+    }
+  }
+
+  &__action {
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    min-width: 7%;
+    background-color: #41636e;
+
+    button {
+      border: none;
+      width: 100%;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: #c52828;
+    }
+
+    &:hover .listItem__icon {
+      transform: scale(1.1);
+    }
+  }
+
+  &__icon {
+    fill: white;
+    height: 3.1rem;
+    width: 3.1rem;
+  }
+}
