@@ -6,6 +6,7 @@ import RecipeContext from '../../store/recipe-context';
 import Bookmark from '../UI/Bookmark';
 import Ingredients from './Ingredients';
 import Methods from './Methods';
+import Loading from '../UI/Loading';
 import './RecipeInfo.scss';
 
 const RecipeInfo = () => {
@@ -14,7 +15,7 @@ const RecipeInfo = () => {
   const params = useParams(); // .recipeId
   const { REACT_APP_SPOONACULARKEY } = process.env;
 
-  const { data: fetchedData } = useFetch(
+  const { data: fetchedData, isLoading: loading } = useFetch(
     `https://api.spoonacular.com/recipes/${params.recipeId}/information?apiKey=${REACT_APP_SPOONACULARKEY}`,
     !recipeCtx.recipeItems
   );
@@ -57,14 +58,24 @@ const RecipeInfo = () => {
     console.log("Data fetched from api call");
   }
 
+  const showNoContent = (
+    <div className="recipeInfo__noContent">
+      <h1>No Recipe items found, please try again...</h1>
+      <Link to={"/"}>Return To Home</Link>
+    </div>
+  );
+
+  const showLoading = (
+    <div className="recipeInfo__loading">
+      <h1>Fetching that delicious recipe...</h1>
+      <Loading align={"center"} />
+    </div>
+  );
+
   return (
     <section className="recipeInfo">
-      {!selectedRecipe && !fetchedData && (
-        <div className="recipeInfo__noContent">
-          <h1>No Recipe items found, please try again...</h1>
-          <Link to={"/"}>Return To Home</Link>
-        </div>
-      )}
+      {loading && showLoading}
+      {!selectedRecipe && !fetchedData && !loading && showNoContent}
       {selectedRecipe && (
         <Fragment>
           <div className="recipeInfo__image" style={{ backgroundImage: `url(${selectedRecipe[0].image})` }}>
