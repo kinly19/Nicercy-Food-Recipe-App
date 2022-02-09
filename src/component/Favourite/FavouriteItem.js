@@ -4,7 +4,7 @@ import "./FavouriteItem.scss";
 const FavouriteItem = (props) => {
   return (
     <li className="listItem">
-      <div className="listItem__content">
+      <div className="listItem__content" onClick={props.onNavigate}>
         <p>{props.title}</p>
       </div>
       <div className="listItem__action">
