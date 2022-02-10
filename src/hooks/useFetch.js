@@ -41,7 +41,7 @@ const useFetch = (url, hasQuery) => {
           console.log(`Error msg: ${err.message}`);
         });
     }
-  }, [url]);
+  }, [url, hasQuery]);
   
   return { data, errorMessage, isError, isLoading };
 };
