@@ -87,23 +87,19 @@ const RecipeInfo = () => {
       {!selectedRecipe && !fetchedData && !loading && showNoContent}
       {selectedRecipe && (
         <Fragment>
-          <div className="recipeInfo__image" style={{ backgroundImage: `url(${selectedRecipe[0].image})` }}>
+          <div className="recipeInfo__image" style={{ backgroundImage: `url(${image})` }}>
             <div className="recipeInfo__action">
               <Bookmark
-                itemData={{
-                  title: selectedRecipe[0].title,
-                  id: selectedRecipe[0].id,
-                  image: selectedRecipe[0].image,
-                }}
-                id={selectedRecipe[0].id}
+                itemData={{ title, id, image }}
+                id={id}
                 size={"5rem"}
               />
             </div>
           </div>
           <div className="recipeInfo__title">
-            <h1>{selectedRecipe[0].title}</h1>
-            <h3>Ready in: {selectedRecipe[0].readyIn} min</h3>
-            <h3>Servings: {selectedRecipe[0].servings}</h3>
+            <h1>{title}</h1>
+            <h3>Ready in: {readyIn} min</h3>
+            <h3>Servings: {servings}</h3>
           </div>
           <div className="recipeInfo__content">
             <Ingredients data={selectedRecipe} />
