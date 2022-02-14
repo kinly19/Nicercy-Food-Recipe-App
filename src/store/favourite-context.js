@@ -1,17 +1,23 @@
-import { collection, deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '../Firebase'; 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import AuthContext from './auth-context';
 
 const FavouriteContext = React.createContext({
   favouriteList: [],
+  isLoading: false,
   getFavouriteList: () => {},
   addItem: () => {},
   removeItem: () => {},
 })
  
 export const FavouriteContextProvider = (props) => {
+// Context
+  const authCtx = useContext(AuthContext);
+  const currentUserId = authCtx.currentUser;
 // State
   const [favourite, setFavourite] = useState([]);
+  const [loading, setIsloading] = useState(false);
 
 // Handlers
   const getFavouriteListHandler = async (userId) => {
@@ -49,6 +55,7 @@ export const FavouriteContextProvider = (props) => {
 
   const contextValue = {
     favouriteList: favourite,
+    isLoading: loading,
     getFavouriteList: getFavouriteListHandler,
     addItem: addToFavouriteListHandler,
     removeItem: removeFromFavouriteHandler,
