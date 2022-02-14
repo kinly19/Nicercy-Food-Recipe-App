@@ -17,7 +17,9 @@ const AuthContext = React.createContext({
 //wrapper component for providing context
 export const AuthContextProvider = (props) => {
 
-  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const initialAuthStatus = JSON.parse(localStorage.getItem("authStatus"));
+  const [isLoggedin, setIsLoggedIn] = useState(initialAuthStatus);
+  const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(null);
@@ -26,8 +28,12 @@ export const AuthContextProvider = (props) => {
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       setIsLoggedIn(true);
+      setCurrentUser(currentUser.uid);
+      localStorage.setItem("authStatus", true);
     } else {
-      setIsLoggedIn(false);
+      setIsLoggedIn(null);
+      setCurrentUser(null);
+      localStorage.removeItem("authStatus");
     }
   });
 
@@ -109,6 +115,7 @@ export const AuthContextProvider = (props) => {
 
   const contextValue = {
     isLoggedIn: isLoggedin,
+    currentUser,
     error: error,
     errorMessage: errorMessage,
     loading: loading,
