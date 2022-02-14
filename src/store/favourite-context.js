@@ -36,23 +36,25 @@ export const FavouriteContextProvider = (props) => {
     setIsloading(false);
   };
 
-  const addToFavouriteListHandler = async (userId, item) => {
+  const addToFavouriteListHandler = async (item) => {
     try {
-      await setDoc(doc(db, "users", userId, "Favourite", `${item.id}`), {
+      await setDoc(doc(db, "users", currentUserId, "Favourite", `${item.id}`), {
         Title: item.title,
         Id: item.id,
         Image: item.image,
       });
+      getFavouriteListHandler();
       console.log("Items added to list: ", item.id);
     } catch {
       console.log("failed to add item to list");
     }
   };
 
-  const removeFromFavouriteHandler = async (userId, itemId) => {
+  const removeFromFavouriteHandler = async (itemId) => {
     try {
-      await deleteDoc(doc(db, "users", userId, "Favourite", `${itemId}`));
+      await deleteDoc(doc(db, "users", currentUserId, "Favourite", `${itemId}`));
       console.log("Item deleted: ", itemId);
+      getFavouriteListHandler();
     } catch {
       console.log("Failed to delete item: ", itemId);
     }
