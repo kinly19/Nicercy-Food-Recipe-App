@@ -76,14 +76,14 @@ export const AuthContextProvider = (props) => {
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
       .then((user) => {
         // create new doc in firestore for new user
-        setDoc(doc(db, "users", user.user.uid),{
+        setDoc(doc(db, "users", user.user.uid), {
           Email: user.user.email,
-            Firstname: userFirstname,
-            Lastname: userLastname
+          Firstname: userFirstname,
+          Lastname: userLastname,
         });
 
         setLoading(false);
-        history("/");
+        history(-1);
         console.log("User Signed up");
         console.log(user);
       })
