@@ -19,16 +19,21 @@ export const FavouriteContextProvider = (props) => {
   const [favourite, setFavourite] = useState([]);
   const [loading, setIsloading] = useState(false);
 
-// Handlers
-  const getFavouriteListHandler = async (userId) => {
-    // get data from firestore
-    const snapshot = await getDoc(collection(db, "users", userId, "Favourite"));
-
-    snapshot.forEach((doc) => {
-      setFavourite((prevState) => [...prevState, doc.data()]);
-    });
-
-    console.log(favourite);
+  const getFavouriteListHandler = async () => {
+    const favList = [];
+    setIsloading(true);
+    if (currentUserId) {
+      const snapshot = await getDocs(
+        collection(db, "users", currentUserId, "Favourite")
+      );
+      snapshot.forEach((doc) => {
+        favList.push(doc.data());
+      });
+      setFavourite(favList);
+    } else {
+      console.log("No user found");
+    }
+    setIsloading(false);
   };
 
   const addToFavouriteListHandler = async (userId, item) => {
