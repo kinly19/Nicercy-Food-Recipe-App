@@ -6,6 +6,7 @@ import { setDoc, doc } from "firebase/firestore";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
+  currentUser: "",
   error: false,
   errorMessage: "",
   loading: false,
@@ -18,7 +19,7 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
 
   const initialAuthStatus = JSON.parse(localStorage.getItem("authStatus"));
-  const [isLoggedin, setIsLoggedIn] = useState(initialAuthStatus);
+  const [isLoggedIn, setIsLoggedIn] = useState(initialAuthStatus);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -114,10 +115,10 @@ export const AuthContextProvider = (props) => {
   }
 
   const contextValue = {
-    isLoggedIn: isLoggedin,
+    isLoggedIn,
     currentUser,
-    error: error,
-    errorMessage: errorMessage,
+    error,
+    errorMessage,
     loading: loading,
     login: loginHandler,
     signup: registerHandler,
