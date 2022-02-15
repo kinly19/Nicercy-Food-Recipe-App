@@ -1,13 +1,15 @@
 import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../Firebase";
 import FavouriteContext from "../../store/favourite-context";
+import AuthContext from "../../store/auth-context";
+import Loading from "../UI/Loading";
 import FavouriteItem from "./FavouriteItem";
 import "./FavouriteList.scss";
 
 const FavouriteList = () => {
   const favouriteCtx = useContext(FavouriteContext);
-  const currentUser = auth.currentUser.uid;
+  const authCtx = useContext(AuthContext);
+  const currentUser = authCtx.currentUser;
   let navigate = useNavigate()
 
   const onRemoveHandler = (itemId) => {
