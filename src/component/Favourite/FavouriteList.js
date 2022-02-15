@@ -28,9 +28,9 @@ const FavouriteList = () => {
   // Conditional Content
   const showLoading = favouriteCtx.isLoading && <Loading align={"center"}/>;
 
-  let favouritesContent = <h2>No favourites found...</h2>;
+  let favouritesContent = !favouriteCtx.isLoading && <h2>No favourites found...</h2>;
 
-  if (favouriteCtx.favouriteList.length > 0 && !favouriteCtx.isLoading) {
+  if (favouriteCtx.favouriteList.length > 0) {
     favouritesContent = favouriteCtx.favouriteList.map((item) => (
       <FavouriteItem
         key={item.Id}
