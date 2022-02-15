@@ -13,7 +13,7 @@ const FavouriteList = () => {
   let navigate = useNavigate()
 
   const onRemoveHandler = (itemId) => {
-    favouriteCtx.removeItem(currentUser, itemId);
+    favouriteCtx.removeItem(itemId);
   };
 
   const onNavigateHandler = (itemId) => {
@@ -22,8 +22,8 @@ const FavouriteList = () => {
 
   useEffect(() => {
     // fetch favourites list from firestore
-    favouriteCtx.getFavouriteList(currentUser);
-  }, []);
+    favouriteCtx.getFavouriteList();
+  }, [currentUser]);
 
   return (
     <div className="favourite">
