@@ -9,7 +9,7 @@ const Landing = () => {
   const recipeCtx = useContext(RecipeContext);
 
   useEffect(() => {
-    if (recipeCtx.recipeItems && recipeCtx.similarRecipeItems) {
+    if (recipeCtx.recipeItems || recipeCtx.similarRecipeItems) {
       window.scroll({
         top: 1000,
         behavior: 'smooth'
@@ -29,7 +29,7 @@ const Landing = () => {
       <div className="landing__form">
         <RecipeForm />
       </div>
-      {recipeCtx.Loading && <Loading />}
+      {recipeCtx.Loading && <Loading align={"flex-start"}/>}
       {recipeCtx.error && <ErrorModal errorMessage={recipeCtx.errorMessage} />}
     </section>
   );
