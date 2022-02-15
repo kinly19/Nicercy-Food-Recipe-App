@@ -1,17 +1,18 @@
 import { useEffect, useState, useContext } from "react";
-import { auth } from "../../Firebase";
-import { BsFillBookmarkHeartFill } from 'react-icons/bs';
-import FavouriteContext from "../../store/favourite-context";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
+import FavouriteContext from "../../store/favourite-context";
+import { BsFillBookmarkHeartFill } from 'react-icons/bs';
 import "./Bookmark.scss";
 
 const Bookmark = (props) => {
   // Context
   const favouriteCtx = useContext(FavouriteContext);
+  const authCtx = useContext(AuthContext);
   //states
   const [isFavourite, setIsFavourite] = useState(null);
   const favouriteItem = props.itemData;
-  const currentUser = auth.currentUser?.uid;
+  const currentUser = authCtx.currentUser;
   const selectedFavouriteItem = favouriteCtx.favouriteList.filter((item) => {
     if (item.Id === props.id) {
       return item;
@@ -24,10 +25,10 @@ const Bookmark = (props) => {
   const bookmarkHandler = () => {
     if (currentUser && !isFavourite) {
       setIsFavourite(true);
-      favouriteCtx.addItem(currentUser, favouriteItem);
+      favouriteCtx.addItem(favouriteItem);
     } else {
       setIsFavourite(false);
-      favouriteCtx.removeItem(currentUser, favouriteItem.id);
+      favouriteCtx.removeItem(favouriteItem.id);
     }
 
     if (!currentUser) {
@@ -38,16 +39,14 @@ const Bookmark = (props) => {
   // SideEffects
   useEffect(() => {
     // Fetch data from firestore
-    favouriteCtx.getFavouriteList(currentUser);
+    favouriteCtx.getFavouriteList();
     // set state after first render
-    setIsFavourite(hasFavourite);
-
     if (hasFavourite) {
       setIsFavourite(true);
     } else {
       setIsFavourite(false);
     }
-  }, [hasFavourite]);
+  }, [hasFavourite, currentUser]);
 
   return (
     <button
