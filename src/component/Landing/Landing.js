@@ -19,17 +19,20 @@ const Landing = () => {
 
   return (
     <section className="landing">
-      <div className="landing__header">
-        <h1>Nicercy</h1>
-        <h2>Cooking Made Easy</h2>
-        <p>
-          Search over thousands of recipes. Its so simple... even your kids can do it
-        </p>
+      <div className="landing__content">
+        <div className="landing__header">
+          <h1>Nicercy</h1>
+          <h2>Cooking Made Easy</h2>
+          <p>
+            Search over thousands of recipes. Its so simple... even your kids
+            can do it
+          </p>
+        </div>
+        <div className="landing__form">
+          <RecipeForm />
+        </div>
       </div>
-      <div className="landing__form">
-        <RecipeForm />
-      </div>
-      {recipeCtx.Loading && <Loading align={"flex-start"}/>}
+      {recipeCtx.Loading && <Loading align={"flex-start"} />}
       {recipeCtx.error && <ErrorModal errorMessage={recipeCtx.errorMessage} />}
     </section>
   );
