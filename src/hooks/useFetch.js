@@ -8,6 +8,7 @@ const useFetch = (url, hasQuery) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsError(false);
     if (hasQuery) {
       setIsLoading(true);
       fetch(url, {
