@@ -7,6 +7,15 @@
   padding-right: 15%;
   color: #41636e;
 
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 17%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(243, 243, 243, 0.91);
+  }
 
   &__header {
     width: 50%;
