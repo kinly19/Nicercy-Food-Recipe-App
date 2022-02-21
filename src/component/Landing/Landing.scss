@@ -1,14 +1,12 @@
 .landing {
-  background-image: url("https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-image: url("https://images.unsplash.com/photo-1546069901-5ec6a79120b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
   height: 100vh;
-  padding: 15% 15%;
-
+  padding-right: 15%;
   color: #41636e;
-  font-family: "Quicksand";
+
 
   &__header {
     width: 50%;
