@@ -18,31 +18,30 @@
   }
 
   &__header {
-    width: 50%;
+    width: 60rem;
     text-transform: uppercase;
 
     & h1 {
-      font-size: 9rem;
+      font-size: 10rem;
       font-weight: 300;
-      margin-bottom: 2rem;
+      transform: translateX(-1%);
     }
 
     & h2 {
-      font-size: 6rem;
-      line-height: 6.5rem;
-      margin-bottom: 3rem;
+      font-size: 5rem;
+      margin-bottom: 1rem;
     }
 
     & p {
-      font-size: 3rem;
+      font-size: 2.5rem;
       text-transform: none;
       line-height: 4.2rem;
-      margin-bottom: 5rem;
+      margin-bottom: 3rem;
     }
   }
 
   &__form {
-    background-color: cornsilk;
-    width: 45%;
+    border-radius: 5px;
+    width: 100%;
   }
 }
