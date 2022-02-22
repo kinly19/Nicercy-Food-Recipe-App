@@ -1,9 +1,10 @@
 .error {
   background-color: rgba(17, 17, 17, 0.616);
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 2000;
   height: 100%;
   width: 100%;
 
