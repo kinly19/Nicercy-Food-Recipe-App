@@ -27,6 +27,11 @@
     }
   }
 
+  &__heading {
+    display: flex;
+    background-color: rgb(241, 239, 235, .78);
+  }
+
   &__image {
     position: relative;
     min-height: 40vh;
@@ -51,13 +56,15 @@
   }
 
   &__title {
-    padding: 3% 3% 0 0;
+    width: 50%;
+    margin: auto;
+    padding: 5%;
     color: #41636e;
 
     h1 {
       margin-bottom: 2rem;
-      font-size: 3.2rem;
-      font-weight: 400;
+      font-size: 2.4rem;
+      font-weight: 600;
     }
 
     h3 {
