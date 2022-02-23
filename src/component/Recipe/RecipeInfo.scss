@@ -39,15 +39,14 @@
   }
 
   &__action {
+
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: -3rem;
-    right: -3rem;
+    margin-top: 2rem;
     background-color: #41636e;
-    height: 10rem;
-    width: 10rem;
+    height: 7.5rem;
+    width: 7.5rem;
     border-radius: 50%;
   }
 
