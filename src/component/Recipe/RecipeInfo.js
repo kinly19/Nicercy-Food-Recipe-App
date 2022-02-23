@@ -67,14 +67,14 @@ const RecipeInfo = () => {
 
   const { image, title, id, readyIn, servings } = selectedRecipe?.[0] || {};
 
-  const showNoContent = (
+  const showNoContent = !selectedRecipe && !fetchedData && !loading && (
     <div className="recipeInfo__noContent">
       <h1>No Recipe items found, please try again...</h1>
       <Link to={"/"}>Return To Home</Link>
     </div>
   );
 
-  const showLoading = (
+  const showLoading = loading && (
     <div className="recipeInfo__loading">
       <h1>Fetching that delicious recipe...</h1>
       <Loading align={"center"} />
@@ -83,8 +83,8 @@ const RecipeInfo = () => {
 
   return (
     <section className="recipeInfo">
-      {loading && showLoading}
-      {!selectedRecipe && !fetchedData && !loading && showNoContent}
+      {showLoading}
+      {showNoContent}
       {selectedRecipe && (
         <Fragment>
           <div className="recipeInfo__image" style={{ backgroundImage: `url(${image})` }}>
