@@ -29,7 +29,9 @@
 
   &__image {
     position: relative;
-    height: 40vh;
+    min-height: 40vh;
+    height: 100%;
+    width: 50%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
