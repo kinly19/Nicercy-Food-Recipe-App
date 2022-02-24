@@ -50,7 +50,9 @@ const RecipeInfo = () => {
         id: fetchedData.id,
         title: fetchedData.title,
         image: fetchedData.image,
-        readyIn: fetchedData.readyInMinutes,
+        readyIn: `${fetchedData.readyInMinutes} Min`,
+        prepIn: fetchedData.preparationMinutes ? `${fetchedData.preparationMinutes} Min` : "N/A",
+        cookTime: fetchedData.cookingMinutes ? `${fetchedData.cookingMinutes} Min` : "N/A",
         servings: fetchedData.servings,
         ingredients: fetchedData.extendedIngredients,
         instructions: fetchedData.analyzedInstructions,
@@ -65,7 +67,7 @@ const RecipeInfo = () => {
     }
   }, [selectedRecipe]);
 
-  const { image, title, id, readyIn, servings } = selectedRecipe?.[0] || {};
+  const { image, title, id, readyIn, prepIn, cookTime, servings } = selectedRecipe?.[0] || {};
 
   const showNoContent = !selectedRecipe && !fetchedData && !loading && (
     <div className="recipeInfo__noContent">
