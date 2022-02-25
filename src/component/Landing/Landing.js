@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, Fragment } from 'react';
 import RecipeForm from '../RecipeForm/RecipeForm';
 import Loading from '../UI/Loading';
 import ErrorModal from '../UI/ErrorModal';
@@ -7,6 +7,8 @@ import './Landing.scss';
 
 const Landing = () => {
   const recipeCtx = useContext(RecipeContext);
+  const showLoading = recipeCtx.Loading && <Loading align={"flex-start"}/>
+  const showError = recipeCtx.error && <ErrorModal errorMessage={recipeCtx.errorMessage} />
 
   useEffect(() => {
     if (recipeCtx.recipeItems || recipeCtx.similarRecipeItems) {
@@ -18,23 +20,23 @@ const Landing = () => {
   },[recipeCtx.recipeItems, recipeCtx.similarRecipeItems]);
 
   return (
-    <section className="landing">
-      <div className="landing__content">
-        <div className="landing__header">
-          <h1>Nicercy</h1>
-          <h2>Cooking Made Easy</h2>
-          <p>
-            Search over thousands of recipes. Its so simple... even your kids
-            can do it
-          </p>
+    <Fragment>
+      {showError}
+      <section className="landing">
+        <div className="landing__content">
+          <div className="landing__header">
+            <h1>Nicercy</h1>
+            <h2>Cooking Made Easy</h2>
+            <p>
+              Search over thousands of recipes. Its so simple... even your kids
+              can do it
+            </p>
+            <RecipeForm />
+          </div>
+          {showLoading}
         </div>
-        <div className="landing__form">
-          <RecipeForm />
-        </div>
-      </div>
-      {recipeCtx.Loading && <Loading align={"flex-start"} />}
-      {recipeCtx.error && <ErrorModal errorMessage={recipeCtx.errorMessage} />}
-    </section>
+      </section>
+    </Fragment>
   );
 };
 
