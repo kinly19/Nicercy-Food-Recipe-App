@@ -10,20 +10,22 @@ const Home = () => {
   return (
     <main className="home">
       <Landing />
-      {recipeCtx.recipeItems && recipeCtx.similarRecipeItems && (
-        <Fragment>
+      <Fragment>
+        {recipeCtx.recipeItems && (
           <RecipeList
             title={"Recipes For"}
             subTitle={recipeCtx.searchInputTitle}
             data={recipeCtx.recipeItems}
           />
+        )}
+        {recipeCtx.similarRecipeItems && (
           <RecipeList
             title={"Similar Recipes For"}
             subTitle={recipeCtx.searchInputTitle}
             data={recipeCtx.similarRecipeItems}
           />
-        </Fragment>
-      )}
+        )}
+      </Fragment>
     </main>
   );
 };
