@@ -52,7 +52,7 @@ export const RecipeContextProvider = (props) => {
 
   const clearListHandler = () => {
     setRecipeItems(null);
-    setSimilarRecipeIds(null);
+    setSimilarRecipeItems(null);
   }
 
   // Side Effects/Store data after fetch
