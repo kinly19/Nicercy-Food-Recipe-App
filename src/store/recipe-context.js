@@ -9,6 +9,7 @@ const RecipeContext = React.createContext({
   similarRecipeItems: [],
   searchInputTitle: "",
   searchInputHandler: () => {},
+  clearList: () => {},
 })
 
 export const RecipeContextProvider = (props) => { 
@@ -47,6 +48,11 @@ export const RecipeContextProvider = (props) => {
   // Handlers
   const fetchSearchQuery = (userInput) => {
     setSearchInput(userInput);
+  }
+
+  const clearListHandler = () => {
+    setRecipeItems(null);
+    setSimilarRecipeIds(null);
   }
 
   // Side Effects/Store data after fetch
@@ -110,6 +116,7 @@ export const RecipeContextProvider = (props) => {
     searchInputTitle: searchInput,
     //handler
     fetchSearchQuery: fetchSearchQuery,
+    clearList: clearListHandler,
   };
 
   return (
