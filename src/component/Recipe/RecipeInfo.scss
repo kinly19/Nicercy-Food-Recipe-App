@@ -39,6 +39,7 @@
       font-size: 2.5rem;
     }
   }
+
   &__heading {
     display: flex;
     flex-direction: column;
@@ -104,5 +105,44 @@
 
   &__content {
     padding: 0 15%;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  .recipeInfo {
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 37.5em) {
+  .recipeInfo {
+    padding: 0;
+
+    &__heading {
+      gap: 0;
+    }
+
+    &__image {
+      width: 100%;
+      border-radius: 0;
+    }
+
+    &__title {
+      align-items: flex-start;
+
+      h1 {
+        text-align: left;
+      }
+    }
+
+    &__subInfo {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    &__content {
+      padding: 0 10%;
+    }
+
   }
 }
