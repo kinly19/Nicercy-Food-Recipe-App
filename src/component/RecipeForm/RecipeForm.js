@@ -13,7 +13,8 @@ const RecipeForm = () => {
     e.preventDefault();
     
     const enteredInput = searchInputRef.current.value;
-    recipeCtx.fetchSearchQuery(enteredInput)   
+    recipeCtx.fetchSearchQuery(enteredInput);
+    recipeCtx.clearList(); // clear array list   
     formRef.current.reset(); //reset input field
     console.log("Search recipe for:" + enteredInput);
   };
