@@ -1,5 +1,5 @@
 .ingredients {
-  margin: 7rem 0;
+  margin: 10% 0;
 
   h2 {
     font-size: 4rem;
@@ -7,15 +7,18 @@
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
     padding: 3rem 0;
+    list-style: none;
 
     li {
       padding-left: 3rem;
-      font-size: 2.3rem;
+      font-size: 2rem;
       line-height: 5rem;
-      width: 50%;
+      font-weight: 500;
+
+      span {
+        color: #41636e;
+      }
     }
   }
 
