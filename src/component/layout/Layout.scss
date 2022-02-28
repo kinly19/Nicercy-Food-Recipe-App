@@ -9,3 +9,9 @@
   min-height: 100vh;
   padding: 10% 15%;
 }
+
+@media screen and (max-width: 60em) {
+  .main {
+    padding: 7rem 0 0 0;
+  }
+}
