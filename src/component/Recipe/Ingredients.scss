@@ -51,6 +51,21 @@
       border: none;
       border-radius: 5px;
       color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.07)
+      }
+
+      &:active {
+        transform: scale(1);
+      }
     }
+  }
+}
+
+@media screen and (max-width: 37.5em) {
+  .ingredients {
+    margin: 10rem 0;
   }
 }
