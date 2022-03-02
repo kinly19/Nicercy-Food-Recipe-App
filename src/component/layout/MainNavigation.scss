@@ -1,66 +1,118 @@
 .nav {
-  background: linear-gradient(rgb(82, 112, 122),rgb(65, 99, 110));
+  background: linear-gradient(rgb(82, 112, 122), rgb(65, 99, 110));
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 7rem;
+  position: fixed;
+  top: 0;
   width: 100%;
-  position: absolute;
-  padding: 0 15%;
-  font-family: "Quicksand";
+  z-index: 1000;
   letter-spacing: 0.3rem;
 
-  &__logo {
+  a {
+    text-decoration: none;
+    color: rgb(219, 219, 219);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 7rem;
+    width: 100%;
+    padding-left: 15%;
     font-size: 3.5rem;
     font-weight: 300;
+  }
+
+  &__toggle {
+    display: none;
+    height: 4.5rem;
+    border: none;
+    background: transparent;
+  }
+
+  &__toggleIcon {
+    height: 100%;
+    width: 100%;
     color: rgb(219, 219, 219);
 
-    & a {
-      text-decoration: none;
-      color: rgb(219, 219, 219);
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(1);
     }
   }
 
   &__links {
-    height: 100%;
-    width: 30%;
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: .1rem;
-    
-    &--active {
-     background-color: rgb(88, 120, 131);
-    }
-
-    & ul {
+    padding-right: 15%;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+  
+    ul {
       display: flex;
-      justify-content: flex-end;
-      height: 100%;
     }
 
-    & li {
-      width: 12rem;
-      list-style: none;
+    a {
       cursor: pointer;
     }
+  }
 
-    & a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      text-decoration: none;
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: rgb(241, 241, 241);
-      transition: all .3s;
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7rem;
+    width: 15rem;
 
-      &:hover {
-       background-color: rgb(93, 125, 136);
+    &--active {
+      background-color: rgb(88, 120, 131);
+    }
+
+    &:hover {
+      background-color: rgb(93, 125, 136);
+    }
+
+    &:active {
+      background-color: rgb(88, 118, 128);
+    }
+  }
+}
+
+@media screen and (max-width: 48em) {
+  .nav {
+    flex-direction: column;
+
+    &__header {
+      padding-right: 15%;
+    }
+
+    &__toggle {
+      display: block;
+    }
+
+    &__links {
+      padding-right: 0;
+
+      ul {
+        flex-direction: column;
+        max-height: 0; // transition height
+        opacity: 0;
+        overflow: hidden;
+        transition: ease-in 0.2s;
       }
 
-      &:active {
-        background-color: rgb(88, 118, 128);
+      li {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      a {
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 15%;
+        width: 100%;
       }
     }
   }
