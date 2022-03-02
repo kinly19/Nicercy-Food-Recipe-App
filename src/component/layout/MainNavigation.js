@@ -1,39 +1,71 @@
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { FiMenu } from 'react-icons/fi'
+import AuthContext from '../../store/auth-context';
 import './MainNavigation.scss';
 
 const MainNavigation = () => {
+  const authCtx = useContext(AuthContext);
+
+  const [toggleMenu, setToggleMenu] = useState(false);
+  
+  const toggleNavHandler = () => {
+    setToggleMenu(!toggleMenu);
+  }
+
+  const unToggleNavHandler = () => {
+    setToggleMenu(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", unToggleNavHandler);
+    window.addEventListener("scroll", unToggleNavHandler);
+
+    return () => {
+      window.removeEventListener("resize", unToggleNavHandler);
+      window.removeEventListener("scroll", unToggleNavHandler);
+    };
+  }, []);
+
+  const activeClass = navData => navData.isActive ? "nav__link nav__link--active" : "nav__link";
+
+  const toggleClass = toggleMenu ? { maxHeight: "200px", opacity: "1" } : {};
+ 
+  let navListItem = (
+    <li className="nav__link" onClick={unToggleNavHandler}>
+      <NavLink className={activeClass} to="/auth">
+        Login
+      </NavLink>
+    </li>
+  );
+
+  if (authCtx.isLoggedIn) {
+    navListItem = (
+      <Fragment>
+        <li className="nav__link" onClick={unToggleNavHandler}>
+          <NavLink className={activeClass} to="/Favourite">
+            Favourites
+          </NavLink>
+        </li>
+        <li className="nav__link" onClick={unToggleNavHandler}>
+          <NavLink className={activeClass} to="/" onClick={authCtx.logout}>
+            Logout
+          </NavLink>
+        </li>
+      </Fragment>
+    );
+  }
+
   return (
     <header className="nav">
-      <div className="nav__logo">
+      <div className="nav__header">
         <Link to={"/"}>Nicercy</Link>
+        <button className="nav__toggle" onClick={toggleNavHandler}>
+          <FiMenu className="nav__toggleIcon" />
+        </button>
       </div>
       <nav className="nav__links">
-        <ul>
-          <li>
-            <NavLink
-              className={(navData) =>
-                navData.isActive
-                  ? "nav__links nav__links--active"
-                  : "nav__links"
-              }
-              to="/login"
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={(navData) =>
-                navData.isActive
-                  ? "nav__links nav__links--active"
-                  : "nav__links"
-              }
-              to="/signup"
-            >
-              Signup
-            </NavLink>
-          </li>
-        </ul>
+        <ul style={toggleClass}>{navListItem}</ul>
       </nav>
     </header>
   );
