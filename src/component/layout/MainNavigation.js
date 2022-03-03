@@ -2,10 +2,12 @@ import { Fragment, useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi'
 import AuthContext from '../../store/auth-context';
+import RecipeContext from '../../store/recipe-context';
 import './MainNavigation.scss';
 
 const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
+  const recipeCtx = useContext(RecipeContext)
 
   const [toggleMenu, setToggleMenu] = useState(false);
   
@@ -16,6 +18,11 @@ const MainNavigation = () => {
   const unToggleNavHandler = () => {
     setToggleMenu(false);
   };
+
+  const logoutHandler = () => {
+    authCtx.logout();
+    recipeCtx.clearList();
+  }
 
   useEffect(() => {
     window.addEventListener("resize", unToggleNavHandler);
@@ -48,7 +55,7 @@ const MainNavigation = () => {
           </NavLink>
         </li>
         <li className="nav__link" onClick={unToggleNavHandler}>
-          <NavLink className={activeClass} to="/" onClick={authCtx.logout}>
+          <NavLink className={activeClass} to="/" onClick={logoutHandler}>
             Logout
           </NavLink>
         </li>
