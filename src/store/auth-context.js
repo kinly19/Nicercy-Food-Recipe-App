@@ -111,6 +111,7 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = async () => {
     await signOut(auth);
+    history("/auth");
     console.log('User Logged Out')
   }
 
