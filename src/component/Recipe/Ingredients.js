@@ -3,9 +3,9 @@ import './Ingredients.scss';
 
 const Ingredients = (props) => {
 
-  const intialServings = props.data[0].servings;
+  const initialServings = props.data[0].servings;
 
-  const [upDatedServings, setUpDatedServings] = useState(intialServings);
+  const [upDatedServings, setUpDatedServings] = useState(initialServings);
 
   const ingredientsList = props.data[0].ingredients.map((recipeItem) => {
     return {
@@ -16,7 +16,7 @@ const Ingredients = (props) => {
     };
   });
 
-  const adjustAmountHandler = (initialValue, initialServings, adjustedServings) => {
+  const adjustAmountHandler = (initialValue, adjustedServings) => {
     let adjustBy = initialValue / initialServings;
     let adjustedAmount = adjustBy * adjustedServings;
     
