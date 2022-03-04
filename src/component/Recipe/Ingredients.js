@@ -43,11 +43,9 @@ const Ingredients = (props) => {
             <span>
               {adjustAmountHandler(
                 item.amount,
-                intialServings,
                 upDatedServings
-              )}
-            </span>
-            {item.units} {item.name} {item.meta}
+              )} {item.units} 
+            </span> {item.name} {item.meta}
           </li>
         ))}
       </ul>
