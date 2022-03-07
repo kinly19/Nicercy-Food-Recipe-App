@@ -54,7 +54,6 @@ export const FavouriteContextProvider = (props) => {
         Id: item.id,
         Image: item.image,
       });
-      getFavouriteListHandler();
       console.log("Items added to list: ", item.id);
     } catch {
       console.log("failed to add item to list");
