@@ -1,5 +1,4 @@
 import { useRef, useContext } from 'react';
-import { FiSearch } from 'react-icons/fi';
 import RecipeContext from '../../store/recipe-context';
 import "./RecipeForm.scss";
 
@@ -26,9 +25,7 @@ const RecipeForm = () => {
           <input type="text" placeholder="Search Recipes..." required ref={searchInputRef}/>
         </div>
         <div className="search__button">
-          <button>
-            <FiSearch className="search__icon" />
-          </button>
+          <button>Search</button>
         </div>
       </div>
     </form>
