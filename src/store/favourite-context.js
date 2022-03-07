@@ -18,20 +18,31 @@ export const FavouriteContextProvider = (props) => {
 // State
   const [favourite, setFavourite] = useState([]);
   const [loading, setIsloading] = useState(false);
-
+// Handlers
   const getFavouriteListHandler = async () => {
     const favList = [];
     setIsloading(true);
+
     if (currentUserId) {
       const snapshot = await getDocs(
         collection(db, "users", currentUserId, "Favourite")
       );
+
       snapshot.forEach((doc) => {
         favList.push(doc.data());
       });
-      setFavourite(favList);
-    } else {
-      console.log("No user found");
+      // sort array list
+      const ascendList = favList.sort((a, b) => {
+        if (a.Title.toLowerCase() < b.Title.toLowerCase()) {
+          return -1;
+        }
+        if (a.Title.toLowerCase() > b.Title.toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      });
+
+      setFavourite(ascendList);
     }
     setIsloading(false);
   };
