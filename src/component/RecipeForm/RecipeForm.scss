@@ -4,7 +4,7 @@
   overflow: hidden;
 
   &__input {
-    height: 3.5rem;
+    height: 4.5rem;
     width: 100%;
 
     input {
@@ -14,7 +14,7 @@
       border: none;
       background-color: rgb(240, 240, 240);
       outline: none;
-      font-size: 1.7rem;
+      font-size: 1.9rem;
 
       &:focus {
         background-color: #faf9e8;
@@ -23,25 +23,36 @@
   }
 
   &__button {
-    width: 5%;
+    width: 20%;
 
     button {
       height: 100%;
       width: 100%;
-      background-color: rgb(240, 240, 240);
+      background-color: #18945a;
+      color: #ebf2f2;
+      font-size: 1.6rem;
+      letter-spacing: .12rem;
       border: none;
+      cursor: pointer;
 
       &:hover {
-        .search__icon {
-          height: 1.8rem;
-          width: 1.8rem;
-        }
+        background-color: #157e4d;
       }
     }
   }
+}
 
-  &__icon {
-    height: 1.7rem;
-    width: 1.6rem;
+@media screen and (max-width: 48em) {
+  .search {
+    flex-direction: column;
+
+    &__input {
+      height: 5rem;
+    }
+
+    &__button {
+      width: 100%;
+      height: 5rem;
+    }
   }
 }
