@@ -7,6 +7,7 @@ import MainNavigation from './component/Layout/MainNavigation';
 import Favourite from './pages/Favourite';
 import AuthPage from './pages/AuthPage';
 import RecipeDetails from './pages/RecipeDetails';
+import Footer from './component/Layout/Footer';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -24,6 +25,7 @@ function App() {
           {authCtx.isLoggedIn && <Route path="/favourite" element={<Favourite />} />}
           {!authCtx.isLoggedIn && <Route path="/favourite" element={<Navigate to="/auth" />}/>}
       </Routes>
+      <Footer />
     </Fragment>
   );
 }
