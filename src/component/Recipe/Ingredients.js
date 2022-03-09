@@ -12,7 +12,10 @@ const Ingredients = (props) => {
       amount: recipeItem.measures.metric.amount,
       name: recipeItem.nameClean || recipeItem.originalName,
       units: recipeItem.measures.metric.unitShort,
-      meta: recipeItem.meta.length > 0 ? `( ${recipeItem.meta[0]} )` : "",
+      meta:
+        recipeItem.meta.length > 0
+          ? `(${recipeItem.meta[0].replace(/[()]/g, "")})`
+          : "",
     };
   });
 
