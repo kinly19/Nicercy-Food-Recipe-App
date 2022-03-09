@@ -44,11 +44,9 @@ const Ingredients = (props) => {
         {ingredientsList.map((item, index) => (
           <li key={index}>
             <span>
-              {adjustAmountHandler(
-                item.amount,
-                upDatedServings
-              )} {item.units} 
-            </span> {item.name} {item.meta}
+              {adjustAmountHandler(item.amount, upDatedServings)} {item.units}
+            </span>{" "}
+            {item.name} {item.meta}
           </li>
         ))}
       </ul>
