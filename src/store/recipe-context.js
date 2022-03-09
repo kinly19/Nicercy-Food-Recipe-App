@@ -26,22 +26,22 @@ export const RecipeContextProvider = (props) => {
 
   // Fetch ids
   const { data: fetchedIds, isError: idHasError, errorMessage: idErrMsg, isLoading: idIsLoading } = useFetch(
-  `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULARKEY}&query=${searchInput}&number=1`,
+  `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULARKEY}&query=${searchInput}&number=10`,
     searchInput // is not null
   );
   // Fetch recipeItems
   const { data: fetchedRecipeItems, isError: recipeHasError, errorMessage: recipeErrMsg, isLoading: recipeIsLoading} = useFetch(
-    `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${recipeIds}&number=1`,
+    `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${recipeIds}&number=10`,
     recipeIds
   );
   // Fetch ids for similar recipes
   const { data: fetchedSimilarIds } = useFetch(
-    `https://api.spoonacular.com/recipes/${singleRecipeId}/similar?apiKey=${REACT_APP_SPOONACULARKEY}&number=1`,
+    `https://api.spoonacular.com/recipes/${singleRecipeId}/similar?apiKey=${REACT_APP_SPOONACULARKEY}&number=10`,
     singleRecipeId
   );
   // Fetch recipe items for similar recipes
   const { data: fetchedSimilarRecipeItems } = useFetch(
-    `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${similarRecipeIds}&number=1`,
+    `https://api.spoonacular.com/recipes/informationBulk?apiKey=${REACT_APP_SPOONACULARKEY}&ids=${similarRecipeIds}&number=10`,
     similarRecipeIds
   );
 
