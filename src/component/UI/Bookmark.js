@@ -55,8 +55,7 @@ const Bookmark = (props) => {
       onClick={bookmarkHandler}
     >
       <BsFillBookmarkHeartFill
-        className="bookmark__icon"
-        style={isFavourite ? { fill: "#ffc100" } : {}}
+        className={isFavourite ? "bookmark__icon" : "bookmark__icon bookmark__icon--active"}
       />
     </button>
   );
