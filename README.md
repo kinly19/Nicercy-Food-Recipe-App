@@ -3,7 +3,7 @@
 Food recipe search website created using React.
 
 ### Live Site
-
+https://nicercy-recipe-app.firebaseapp.com
 ## About
 
 Nicercy is a food recipe search website which lets users easily find and search thousands of food recipes across the globe. 
