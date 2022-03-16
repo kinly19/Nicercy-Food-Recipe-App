@@ -18,5 +18,13 @@
     &:active {
       transform: scale(1);
     }
+
+    &--active {
+      fill: #ffc100;
+
+      &:hover {
+        fill: #f3d67e;
+      }
+    }
   }
 }
