@@ -23,7 +23,6 @@ const FavouriteList = () => {
   useEffect(() => {
     // fetch favourites list from firestore
     favouriteCtx.getFavouriteList();
-    window.scrollTo(0, 0);
   }, [currentUser]);
 
   // Conditional Content
